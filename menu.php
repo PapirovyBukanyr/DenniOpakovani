@@ -3,6 +3,9 @@
  * Tato stránka toto je pouze fragment horní lišty
  * Ta má možnosti jít zpět, jít na profil a odhlásit se 
  * Na tlačítku přejít na profil se zobrazí jméno a počet celkově vyřešených úloh
+ * 
+ * @param osobni_cislo osobní číslo uživatele
+ * @param jmeno jméno uživatele
  */
 
 $sql = "SELECT * FROM uzivatele_reseni WHERE cislo_uzivatele='$osobni_cislo'";

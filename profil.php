@@ -3,6 +3,9 @@
  * Na této stránce se vypočítá, kolikátý je člověk a jaký je třídní průměr na daný den
  * To se následně vypíše
  * Graf se vytváří javascriptem
+ * 
+ * @param POST["osobni_cislo"] osobní číslo uživatele
+ * @param POST["heslo"] heslo uživatele
  */
 
 $jmeno = null;

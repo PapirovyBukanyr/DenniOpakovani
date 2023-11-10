@@ -1,7 +1,6 @@
 <?php
 /**
  * Tato stránka neobsahuje žádnou logiku, pouze je to zobrazení přihlašovacího vstupu
- *
  */
 ?>
 <!DOCTYPE html>

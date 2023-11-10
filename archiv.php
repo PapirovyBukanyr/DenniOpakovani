@@ -1,6 +1,10 @@
 <?php
 /**
  * Archiv denních výzev, které se nahrají do polí zatím bez omezení maximálního počtu
+ * 
+ * @param POST["osobni_cislo"] osobní číslo uživatele
+ * @param POST["heslo"] heslo uživatele
+ * @param POST["volba"] obor, který si uživatel zvolil
  */
 $jmeno = null;
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))

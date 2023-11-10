@@ -27,6 +27,7 @@ return $conn;
  * 
  * @param osobni_cislo Osobní číslo uživatele
  * @param heslo heslo uživatele
+ * @return jmeno jméno uživatele
  */
 function ziskejJmeno($osobni_cislo, $heslo) {
 $conn = pripoj();

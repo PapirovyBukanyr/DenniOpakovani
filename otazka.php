@@ -2,9 +2,9 @@
 /**
  * Vypsání samotné otázky, sám nemám tušení, jakto, že to funguje...
  * 
- * @param $_POST["osobni_cislo"] osobní číslo uživatele
- * @param $_POST["heslo"] heslo uživatel
- * @param $_POST["volba"] obor, který si uživatel zvolil
+ * @param POST["osobni_cislo"] osobní číslo uživatele
+ * @param POST["heslo"] heslo uživatele
+ * @param POST["volba"] obor, který si uživatel zvolil
  */
 $jmeno = null;
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))

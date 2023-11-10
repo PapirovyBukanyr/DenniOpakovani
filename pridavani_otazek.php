@@ -2,13 +2,13 @@
 /**
  * K této stránce veřejnost nemá přístup, přidávám tu otázky
  * 
- * @param $_POST['osobni_cislo'] osobní číslo uživatele
- * @param $_POST['heslo'] heslo uživatele
+ * @param POST["osobni_cislo"] osobní číslo uživatele
+ * @param POST["heslo"] heslo uživatele
  * 
- * @param? $_POST['otazka'] zadaná otázka
- * @param? $_POST['odpoved'] zadaná odpověď
- * @param? $_POST['datum'] zadané datum
- * @param? $_POST['obor'] zadaný obor
+ * @param POST['otazka'] zadaná otázka
+ * @param POST['odpoved'] zadaná odpověď
+ * @param POST['datum'] zadané datum
+ * @param POST['obor'] zadaný obor
  */
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     {
