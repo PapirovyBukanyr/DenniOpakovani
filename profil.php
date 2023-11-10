@@ -1,11 +1,17 @@
 <?php
+/**
+ * Na této stránce se vypočítá, kolikátý je člověk a jaký je třídní průměr na daný den
+ * To se následně vypíše
+ * Graf se vytváří javascriptem
+ */
+
 $jmeno = null;
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
 {
     $osobni_cislo = $_POST["osobni_cislo"];
     $heslo = $_POST["heslo"];
     include 'pripojeni.php';
-    $jmeno = ziskejJmeno();
+    $jmeno = ziskejJmeno($osobni_cislo,$heslo);
 }
 if ($jmeno != null){
     $conn = pripoj();

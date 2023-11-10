@@ -1,4 +1,10 @@
 <?php
+/**
+ * Tato stránka toto je pouze fragment horní lišty
+ * Ta má možnosti jít zpět, jít na profil a odhlásit se 
+ * Na tlačítku přejít na profil se zobrazí jméno a počet celkově vyřešených úloh
+ */
+
 $sql = "SELECT * FROM uzivatele_reseni WHERE cislo_uzivatele='$osobni_cislo'";
 $result = $conn->query($sql);
 $pocetUloh = 0;

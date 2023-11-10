@@ -1,3 +1,8 @@
+<?php
+/**
+ * přihlášení se k přidávání otázek
+ */
+?>
 <!DOCTYPE html>
 <html>
 <head>

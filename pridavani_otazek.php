@@ -1,9 +1,20 @@
 <?php
+/**
+ * K této stránce veřejnost nemá přístup, přidávám tu otázky
+ * 
+ * @param $_POST['osobni_cislo'] osobní číslo uživatele
+ * @param $_POST['heslo'] heslo uživatele
+ * 
+ * @param? $_POST['otazka'] zadaná otázka
+ * @param? $_POST['odpoved'] zadaná odpověď
+ * @param? $_POST['datum'] zadané datum
+ * @param? $_POST['obor'] zadaný obor
+ */
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     {
         $osobni_cislo = $_POST["osobni_cislo"];
             $heslo = $_POST["heslo"];
-        if($osobni_cislo == 12345 and $heslo == 12345){
+        if($osobni_cislo == 12345 and $heslo == 12345){//bezpečnost přede vším, plánuji to změnit, neboj se
             
             include 'pripojeni.php';
             $conn = pripoj();

@@ -1,15 +1,22 @@
 <?php
+/**
+ * Vypsání samotné otázky, sám nemám tušení, jakto, že to funguje...
+ * 
+ * @param $_POST["osobni_cislo"] osobní číslo uživatele
+ * @param $_POST["heslo"] heslo uživatel
+ * @param $_POST["volba"] obor, který si uživatel zvolil
+ */
 $jmeno = null;
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
 {
     $osobni_cislo = $_POST["osobni_cislo"];
     $heslo = $_POST["heslo"];
     include 'pripojeni.php';
-    $jmeno = ziskejJmeno();
+    $jmeno = ziskejJmeno($osobni_cislo,$heslo);
 }
-if ($jmeno != null and isset($_POST['volba'])){
+if ($jmeno != null and isset($_POST["volba"])){
     $conn = pripoj();
-    $volba = $_POST['volba'];
+    $volba = $_POST["volba"];
     switch ($volba) {
         case "Matematická analýza":
             $nadpis = "<h2>Denní výzva do matematické analýzy: <br> </h2>";

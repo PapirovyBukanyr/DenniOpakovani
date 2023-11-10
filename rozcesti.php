@@ -1,11 +1,14 @@
 <?php
+/**
+ * Rozcestí, kde si člověk vybírá, jaký obor (volbu, proboha, to budu muset sjednotit nebo ti z toho hrábne) denní výzvy chce
+ */
     $jmeno = null;
     if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     {
         $osobni_cislo = $_POST["osobni_cislo"];
         $heslo = $_POST["heslo"];
         include 'pripojeni.php';
-        $jmeno = ziskejJmeno();
+        $jmeno = ziskejJmeno($osobni_cislo,$heslo);
     }
     if ($jmeno != null){
         $conn = pripoj();

@@ -1,13 +1,22 @@
 <?php
+/**
+ * stránka, která zpracovává odpověď přijatou z odpoved.php a vyhodnocuje její správnost
+ * 
+ * @param $_POST['odpoved'] odpověď na otázku
+ * @param $_POST['osobni_cislo'] osobní číslo uživatele
+ * @param $_POST['heslo'] heslo uživatele
+ * @param $_POST['volba'] vybraný obor
+ * 
+ */
 $jmeno = null;
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
 {
     $osobni_cislo = $_POST["osobni_cislo"];
     $heslo = $_POST["heslo"];
     include 'pripojeni.php';
-    $jmeno = ziskejJmeno();
+    $jmeno = ziskejJmeno($osobni_cislo,$heslo);
 }
-if ($jmeno != null and isset($_POST['odpoved'])){
+if ($jmeno != null and isset($_POST['odpoved']) and isset($_POST['volba'])){
     $spravnost = false;
     $conn = pripoj();
     $odpoved = $_POST['odpoved'];

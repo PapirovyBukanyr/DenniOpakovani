@@ -1,3 +1,8 @@
+<?php
+/**
+ * Text co se vygeneruje pro většinu chyb
+ */
+?>
 <!DOCTYPE html>
 <html>
 <head>
