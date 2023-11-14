@@ -4,14 +4,13 @@
  * Ta má možnosti jít zpět, jít na profil a odhlásit se 
  * Na tlačítku přejít na profil se zobrazí jméno a počet celkově vyřešených úloh
  * 
- * @param osobni_cislo osobní číslo uživatele
- * @param jmeno jméno uživatele
+ * @input osobni_cislo osobní číslo uživatele
+ * @input jmeno jméno uživatele
  */
 
-$sql = "SELECT * FROM uzivatele_reseni WHERE cislo_uzivatele='$osobni_cislo'";
-$result = $conn->query($sql);
 $pocetUloh = 0;
-while($row = $result -> fetch_assoc()){
+$nahrani = provedPrikaz("SELECT * FROM uzivatele_reseni WHERE cislo_uzivatele=?", array($osobni_cislo));
+while($row = $nahrani->fetch_assoc()){
     $pocetUloh++;    
 }
 ?>

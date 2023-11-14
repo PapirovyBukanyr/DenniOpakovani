@@ -2,9 +2,9 @@
 /**
  * Vypsání samotné otázky, sám nemám tušení, jakto, že to funguje...
  * 
- * @param POST["osobni_cislo"] osobní číslo uživatele
- * @param POST["heslo"] heslo uživatele
- * @param POST["volba"] obor, který si uživatel zvolil
+ * @input POST["osobni_cislo"] osobní číslo uživatele
+ * @input POST["heslo"] heslo uživatele
+ * @input POST["volba"] obor, který si uživatel zvolil
  */
 $jmeno = null;
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
@@ -15,7 +15,6 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     $jmeno = ziskejJmeno($osobni_cislo,$heslo);
 }
 if ($jmeno != null and isset($_POST["volba"])){
-    $conn = pripoj();
     $volba = $_POST["volba"];
     switch ($volba) {
         case "Matematická analýza":
@@ -39,16 +38,14 @@ if ($jmeno != null and isset($_POST["volba"])){
     }
     include 'menu.php';
     $currentDate = date('Y-m-d');
-    $sql = "SELECT otazka FROM ulohy WHERE datum='$currentDate' AND obor='$volba'";
-    $result = $conn->query($sql);
+    $result = provedPrikaz("SELECT otazka FROM ulohy WHERE datum=? AND obor=?", array($currentDate, $volba));
     if($row = $result -> fetch_assoc()){
         $otazka = $row["otazka"];    
     }
     else{
         $otazka = "Výzva nenalezena. Ozvěte se Markovi, ten vám dá deset důvodů proč...";
     }
-    $sql = "SELECT cislo_uzivatele FROM uzivatele_reseni WHERE datum='$currentDate' AND obor='$volba'";
-    $result = $conn->query($sql);
+    $result = provedPrikaz("SELECT cislo_uzivatele FROM uzivatele_reseni WHERE datum=? AND obor=?",array($currentDate,$volba));
     if ($result->num_rows > 0) {
         $resitele = array();
         while($row = $result->fetch_assoc()) {
@@ -60,7 +57,6 @@ if ($jmeno != null and isset($_POST["volba"])){
             }
         }
       }
-      $conn->close();
 }
 else {
     include 'zpet.php';

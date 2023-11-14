@@ -2,9 +2,9 @@
 /**
  * Archiv denních výzev, které se nahrají do polí zatím bez omezení maximálního počtu
  * 
- * @param POST["osobni_cislo"] osobní číslo uživatele
- * @param POST["heslo"] heslo uživatele
- * @param POST["volba"] obor, který si uživatel zvolil
+ * @input POST["osobni_cislo"] osobní číslo uživatele
+ * @input POST["heslo"] heslo uživatele
+ * @input POST["volba"] obor, který si uživatel zvolil
  */
 $jmeno = null;
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
@@ -15,7 +15,6 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     $jmeno = ziskejJmeno($osobni_cislo,$heslo);
 }
 if ($jmeno != null and isset($_POST['volba'])){
-    $conn = pripoj();
     $volba = $_POST['volba'];
     switch ($volba) {
         case "Archiv úloh do matematické analýzy":
@@ -39,13 +38,13 @@ if ($jmeno != null and isset($_POST['volba'])){
     }
     include 'menu.php';
     $currentDate = date('Y-m-d');
-    $sql = "SELECT otazka, odpoved FROM ulohy WHERE obor='$volba' AND NOT datum='$currentDate'";
-    $result = $conn->query($sql);
+    $result = provedPrikaz("SELECT otazka, odpoved,datum FROM ulohy WHERE obor=?", array($volba));
     $otazky = array();
     while($row = $result -> fetch_assoc()){
-        $otazky[$row["otazka"]]=$row["odpoved"];    
+      if($row["datum"]<$currentDate){
+        $otazky[$row["otazka"]]=$row["odpoved"]; 
+      } 
     }
-    $conn->close();
 }
 else {
     include 'zpet.php';
