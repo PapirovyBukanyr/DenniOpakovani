@@ -9,6 +9,7 @@
 
 /**
  * Funkce na pripojeni se k databázi
+ * @return mysqli pripojeni
 */
 function pripoj(){
 $servername = "localhost";
@@ -24,24 +25,53 @@ return $conn;
 
 /**
  * Funkce na získání jména
- * 
- * @param osobni_cislo Osobní číslo uživatele
- * @param heslo heslo uživatele
- * @return jmeno jméno uživatele
+ * @param int $osobni_cislo Osobní číslo uživatele
+ * @param string $heslo heslo uživatele
+ * @return string jméno uživatele
  */
 function ziskejJmeno($osobni_cislo, $heslo) {
-$conn = pripoj();
-$jmeno = null; 
-$sql = "SELECT jmeno FROM uzivatele WHERE klic='$osobni_cislo' AND heslo='$heslo'";
-$result = $conn->query($sql);
-if($row = $result -> fetch_assoc()){
-    $jmeno= $row["jmeno"]; 
-    $conn->close(); 
-    return $jmeno;
-}
-$conn->close();
+    $hodnoty = array($osobni_cislo,$heslo);
+    if($row = provedPrikaz("SELECT jmeno FROM uzivatele WHERE klic=? AND heslo=?", $hodnoty)-> fetch_assoc()){
+        return $row["jmeno"]; 
+    }
+    return null;
 }
 
-
+/**
+ * Funkce na získání jména
+ * @param string $prikaz příkaz k provedení
+ * @param string[] $hodnoty pole hodnot k nahrání
+ * @return mysqli_result výsledek příkazu
+ */
+function provedPrikaz($prikaz,$hodnoty = null) {
+    $conn = pripoj();
+    $stmt = $conn->prepare($prikaz);
+    if (isset($hodnoty)) {
+    //přemýšlím, jak by to šlo hodit do cyklu
+    switch (sizeof($hodnoty)){
+        case 1:
+            $stmt->bind_param("s", $hodnoty[0]);
+            break;
+        case 2:
+            $stmt->bind_param("ss", $hodnoty[0],$hodnoty[1]);
+            break;
+        case 3:
+            $stmt->bind_param("sss", $hodnoty[0], $hodnoty[1], $hodnoty[2]);
+            break;
+        case 4:
+            $stmt->bind_param("ssss", $hodnoty[0], $hodnoty[1], $hodnoty[2],$hodnoty[3]);
+            break;
+        case 5:
+            $stmt->bind_param("sssss", $hodnoty[0], $hodnoty[1], $hodnoty[2],$hodnoty[3],$hodnoty[4]);
+            break;
+        default:
+            break;
+    }
+    }
+    $stmt->execute();
+    $vystup = $stmt->get_result();
+    $conn ->close();
+    return $vystup;    
+}
 ?>
 </body>

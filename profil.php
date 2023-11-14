@@ -4,8 +4,8 @@
  * To se následně vypíše
  * Graf se vytváří javascriptem
  * 
- * @param POST["osobni_cislo"] osobní číslo uživatele
- * @param POST["heslo"] heslo uživatele
+ * @input POST["osobni_cislo"] osobní číslo uživatele
+ * @input POST["heslo"] heslo uživatele
  */
 
 $jmeno = null;
@@ -17,11 +17,10 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     $jmeno = ziskejJmeno($osobni_cislo,$heslo);
 }
 if ($jmeno != null){
-    $conn = pripoj();
     include "menu.php";
     $currentDate = date('Y-m-d');
-    $sql = "SELECT * FROM uzivatele_reseni ORDER BY datum ASC";
-        $result = $conn->query($sql);
+    $result =provedPrikaz("SELECT * FROM uzivatele_reseni ORDER BY datum ASC");
+    
         $pocetUlohZaUzivatelem = array();
         $pocetpocetMychUlohZaDenUlohZaDen = array();
         $CelkovyPocetUlohTridy = array();

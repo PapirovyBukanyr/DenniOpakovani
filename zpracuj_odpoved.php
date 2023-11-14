@@ -2,10 +2,10 @@
 /**
  * stránka, která zpracovává odpověď přijatou z odpoved.php a vyhodnocuje její správnost
  * 
- * @param POST["osobni_cislo"] osobní číslo uživatele
- * @param POST["heslo"] heslo uživatele
- * @param POST['volba'] vybraný obor
- * @param POST['odpoved'] odpověď na otázku
+ * @input POST["osobni_cislo"] osobní číslo uživatele
+ * @input POST["heslo"] heslo uživatele
+ * @input POST['volba'] vybraný obor
+ * @input POST['odpoved'] odpověď na otázku
  */
 $jmeno = null;
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
@@ -17,27 +17,20 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
 }
 if ($jmeno != null and isset($_POST['odpoved']) and isset($_POST['volba'])){
     $spravnost = false;
-    $conn = pripoj();
     $odpoved = $_POST['odpoved'];
     $volba = $_POST['volba'];
     $currentDate = date('Y-m-d');
-    $sql = "SELECT odpoved FROM ulohy WHERE datum='$currentDate' AND obor='$volba'";
-    $result = $conn->query($sql);
+    $result = provedPrikaz("SELECT odpoved FROM ulohy WHERE datum=? AND obor=?",array($currentDate,$volba));
     if($row = $result -> fetch_assoc()){
         if (trim(strtolower($odpoved)) == trim(strtolower($row["odpoved"]))){
-            
             $spravnost = true;
             $volba = $_POST["volba"];
-            $sql = "SELECT * FROM uzivatele_reseni WHERE obor='$volba' AND datum='$currentDate' AND cislo_uzivatele='$osobni_cislo'";
-            $result1 = $conn->query($sql);
-            if(!$karel = $result1->fetch_assoc()){
-            $sql = "INSERT INTO uzivatele_reseni (obor, datum, cislo_uzivatele) VALUES ('$volba', '$currentDate', '$osobni_cislo')";
-            $conn->query($sql);
+            if(!$pomocna_prommenna = provedPrikaz("SELECT * FROM uzivatele_reseni WHERE obor=? AND datum=? AND cislo_uzivatele=?",array($volba,$currentDate,$osobni_cislo))->fetch_assoc()){
+            provedPrikaz("INSERT INTO uzivatele_reseni (obor, datum, cislo_uzivatele) VALUES (?, ?,?)", array($volba,$currentDate,$osobni_cislo));   
         }
         }   
     }
     include 'menu.php';
-    $conn->close();
     switch($_POST["volba"]){
         case 0:
             $volba = "Matematická analýza";

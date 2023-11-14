@@ -2,13 +2,13 @@
 /**
  * K této stránce veřejnost nemá přístup, přidávám tu otázky
  * 
- * @param POST["osobni_cislo"] osobní číslo uživatele
- * @param POST["heslo"] heslo uživatele
+ * @input POST["osobni_cislo"] osobní číslo uživatele
+ * @input POST["heslo"] heslo uživatele
  * 
- * @param POST['otazka'] zadaná otázka
- * @param POST['odpoved'] zadaná odpověď
- * @param POST['datum'] zadané datum
- * @param POST['obor'] zadaný obor
+ * @input POST['otazka'] zadaná otázka
+ * @input POST['odpoved'] zadaná odpověď
+ * @input POST['datum'] zadané datum
+ * @input POST['obor'] zadaný obor
  */
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     {
@@ -23,14 +23,11 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
                 $otazka = $_POST["otazka"];
                 $odpoved = $_POST["odpoved"];
                 $obor = $_POST["obor"];
-                $sql = "SELECT otazka FROM ulohy WHERE datum='$datum' AND obor='$obor'";
-                $result = $conn->query($sql);
+                $result = provedPrikaz("SELECT otazka FROM ulohy WHERE datum=? AND obor=?", array($datum, $obor));
                 $klic = time();
                 if(!($row = $result -> fetch_assoc())){
-                    $sql = "INSERT INTO ulohy (obor, datum, otazka, odpoved, klic) VALUES ('$obor', '$datum', '$otazka', '$odpoved', '$klic')";
-                    if ($conn->query($sql)){
-                        echo "otazka pridana ";
-                    }
+                    provedPrikaz("INSERT INTO ulohy (obor, datum, otazka, odpoved, klic) VALUES (?,?,?,?,?)", array($obor, $datum, $otazka, $odpoved, $klic));
+                    echo "Otazka pridana";
                 }
                 else{
                     echo "uz existuje";
