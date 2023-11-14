@@ -49,10 +49,7 @@ if ($jmeno != null and isset($_POST["volba"])){
     if ($result->num_rows > 0) {
         $resitele = array();
         while($row = $result->fetch_assoc()) {
-            $cislo = $row["cislo_uzivatele"];
-            $sql1 = "SELECT jmeno FROM uzivatele WHERE klic=$cislo";
-            $result1 = $conn->query($sql1);
-            if($row1 = $result1 -> fetch_assoc()){
+            if($row1 = provedPrikaz("SELECT jmeno FROM uzivatele WHERE klic=?", array($row["cislo_uzivatele"])) -> fetch_assoc()){
                 array_push($resitele,$row1["jmeno"]);
             }
         }
