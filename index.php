@@ -19,18 +19,27 @@
         <div class="row justify-content-center" >
             <div class="col-md-4" >
                 <h2>Přihlášení</h2>
+                <br>
                 <form action="rozcesti.php" method="post">
                     <div class="form-group">
                         <label for="osobni_cislo">Osobní číslo:</label>
-                        <input type="text" class="form-control" id="osobni_cislo" name="osobni_cislo" required>
+                        <input type="number" class="form-control" id="osobni_cislo" name="osobni_cislo" required>
                     </div>
+                    <br>
                     <div class="form-group">
                         <label for="heslo">Heslo:</label>
                         <input type="password" class="form-control" id="heslo" name="heslo" required>
                         <label style="opacity:0.6"for="heslo">Pokud bylo heslo zapomenuto, neváhej napsat Markovi, již brzy to bude autonomní</label>
                     </div>
+                    <br>
                     <button type="submit" class="btn btn-dark">Přihlásit</button>
                 </form>
+                <br>
+                <br>
+                Nemáte ještě účet? registrovat se můžete 
+                <a href="registrace.php">
+                    <button class="btn btn-dark">zde</button>
+                </a>
             </div>
         </div>
     </div>

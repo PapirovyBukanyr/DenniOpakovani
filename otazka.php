@@ -90,7 +90,7 @@ else {
             <div class="form-group">
                     <label>Odpověď:</label>
                     <br>
-                    <textarea class="form-control" id="odpoved" name="odpoved" rows="1" required></textarea>
+                    <input type="text" class="form-control" id="odpoved" name="odpoved" rows="1" required/>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-dark">Odeslat</button>
