@@ -33,11 +33,14 @@ if ($jmeno != null){
             else{
                 $pocetUlohZaUzivatelem[$row['cislo_uzivatele']]=1;
             }
-            if(!isset($pocetMychUlohZaDen[$row['datum']])){
+            if(!isset($pocetMychUlohZaDen[$row['datum']]) and $uzivatelZacal){
                 $pocetMychUlohZaDen[$row['datum']] = 0;
             }
             if($row['cislo_uzivatele'] == $osobni_cislo){
-                $uzivatelZacal = true;
+                if ($uzivatelZacal == false){
+                    $uzivatelZacal = true;
+                    $pocetMychUlohZaDen[$row['datum']] = 0;
+                }
                 $pocetMychUlohZaDen[$row['datum']]++;
             } 
             if(isset($CelkovyPocetUlohTridy[$row['datum']])){
