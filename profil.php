@@ -27,27 +27,29 @@ if ($jmeno != null){
         $uzivatelu = array();
         $uzivatelZacal = false;
         while($row = $result -> fetch_assoc()){
-            if(isset($pocetUlohZaUzivatelem[$row['cislo_uzivatele']])){
-                $pocetUlohZaUzivatelem[$row['cislo_uzivatele']]++;
+            $datumUlohy = $row["datum"];
+            $cisloUzivateleUlohy = $row['cislo_uzivatele'];
+            if(isset($pocetUlohZaUzivatelem[$cisloUzivateleUlohy])){
+                $pocetUlohZaUzivatelem[$cisloUzivateleUlohy]++;
             }
             else{
-                $pocetUlohZaUzivatelem[$row['cislo_uzivatele']]=1;
+                $pocetUlohZaUzivatelem[$cisloUzivateleUlohy]=1;
             }
-            if(!isset($pocetMychUlohZaDen[$row['datum']]) and $uzivatelZacal){
-                $pocetMychUlohZaDen[$row['datum']] = 0;
+            if(!isset($pocetMychUlohZaDen[$datumUlohy]) and $uzivatelZacal){
+                $pocetMychUlohZaDen[$datumUlohy] = 0;
             }
-            if($row['cislo_uzivatele'] == $osobni_cislo){
+            if($cisloUzivateleUlohy == $osobni_cislo){
                 if ($uzivatelZacal == false){
                     $uzivatelZacal = true;
-                    $pocetMychUlohZaDen[$row['datum']] = 0;
+                    $pocetMychUlohZaDen[$datumUlohy] = 0;
                 }
-                $pocetMychUlohZaDen[$row['datum']]++;
+                $pocetMychUlohZaDen[$datumUlohy]++;
             } 
-            if(isset($CelkovyPocetUlohTridy[$row['datum']])){
-                $CelkovyPocetUlohTridy[$row['datum']]++;
+            if(isset($CelkovyPocetUlohTridy[$datumUlohy])){
+                $CelkovyPocetUlohTridy[$datumUlohy]++;
             }
             else{
-                $CelkovyPocetUlohTridy[$row['datum']] = 1;
+                $CelkovyPocetUlohTridy[$datumUlohy] = 1;
             }               
         }
         $pocetUzivatelu = count($pocetUlohZaUzivatelem);
