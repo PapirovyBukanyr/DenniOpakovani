@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</head>
-<body>
 <?php
 
 /**
@@ -29,7 +22,7 @@ return $conn;
  * @param string $heslo heslo uživatele
  * @return string jméno uživatele
  */
-function ziskejJmeno($osobni_cislo, $heslo) {
+function ziskejJmeno(int $osobni_cislo,string $heslo) {
     $hodnoty = array($osobni_cislo,$heslo);
     if($row = provedPrikaz("SELECT jmeno FROM uzivatele WHERE klic=? AND heslo=?", $hodnoty)-> fetch_assoc()){
         return $row["jmeno"]; 
@@ -43,7 +36,7 @@ function ziskejJmeno($osobni_cislo, $heslo) {
  * @param string[] $hodnoty pole hodnot k nahrání
  * @return mysqli_result výsledek příkazu
  */
-function provedPrikaz($prikaz,$hodnoty = null) {
+function provedPrikaz(string $prikaz,array $hodnoty = null) {
     $conn = pripoj();
     $stmt = $conn->prepare($prikaz);
     if (isset($hodnoty)) {
@@ -73,5 +66,5 @@ function provedPrikaz($prikaz,$hodnoty = null) {
     $conn ->close();
     return $vystup;    
 }
+
 ?>
-</body>

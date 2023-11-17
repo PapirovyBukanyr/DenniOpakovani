@@ -41,9 +41,10 @@
 <style>
         .custom-button {
             width: 200px;
-            height: 200px;
             margin: 10px;
             text-align: center; 
+            white-space: normal;
+            word-wrap: break-word;
         }
     </style>
 </head>
@@ -54,22 +55,13 @@
             <input type="radio" name='osobni_cislo' value='<?php echo $osobni_cislo;?>' checked hidden/> 
             <input type="radio" name='heslo' value='<?php echo $heslo;?>' checked hidden/>  
             <div class="row">
-                <div class="col-md-3">
-                    <input type="submit" class="btn <?php if($mojePole[0])echo "btn-success"; else echo "btn-danger";?> custom-button" name = 'volba' value = "Matematická analýza"></input>
-                    <input type="submit" formaction="archiv.php" class="btn btn-dark" name = 'volba' value = "Archiv úloh do matematické analýzy"></input>
-                </div>
-                <div class="col-md-3">
-                        <input type="submit" class="btn <?php if($mojePole[1])echo "btn-success"; else echo "btn-danger";?> custom-button" name = 'volba' value = "Lineární algebra"></input>
-                        <input type="submit" formaction="archiv.php" class="btn btn-dark" name = 'volba' value = "Archiv úloh do lineární algebry"></input>
-                </div>
-                <div class="col-md-3">
-                        <input type="submit" class="btn <?php if($mojePole[2])echo "btn-success"; else echo "btn-danger";?> custom-button" name = 'volba'  value = "Konstruování"></input>
-                        <input type="submit" formaction="archiv.php" class="btn btn-dark" name = 'volba' value = "Archiv úloh do konstruování"></input>
-                </div>
-                <div class="col-md-3">
-                        <input type="submit" class="btn <?php if($mojePole[3])echo "btn-success"; else echo "btn-danger";?> custom-button" name = 'volba' value = "Jiné"></input>
-                        <input type="submit" formaction="archiv.php" class="btn btn-dark" name = 'volba' value = "Archiv jiných úloh"></input>
-                </div>
+                <?php
+                    include 'moznost_rozcesti.php';
+                    pridatMoznostRozcesti($mojePole[0],"Matematická analýza");
+                    pridatMoznostRozcesti($mojePole[1],"Lineární algebra");
+                    pridatMoznostRozcesti($mojePole[2],"Konstruování");
+                    pridatMoznostRozcesti($mojePole[3],"Jiné");
+                ?>
             </div>
         </form>
     </div>

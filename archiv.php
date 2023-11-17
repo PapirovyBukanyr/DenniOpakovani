@@ -17,19 +17,19 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
 if ($jmeno != null and isset($_POST['volba'])){
     $volba = $_POST['volba'];
     switch ($volba) {
-        case "Archiv úloh do matematické analýzy":
+        case "Archiv úloh z kategorie matematická analýza":
             $nadpis = "<h2>Archiv výzev do matematické analýzy: <br> </h2>";
             $volba = 0;
             break;
-        case "Archiv úloh do lineární algebry":
+        case "Archiv úloh z kategorie lineární algebra":
             $nadpis ="<h2>Archiv výzev do lineární algebry: <br> </h2>";
             $volba = 1;
             break;
-        case "Archiv úloh do konstruování":
+        case "Archiv úloh z kategorie konstruování":
             $nadpis = "<h2>Archiv výzev do konstruování:<br>  </h2>";
             $volba = 2;
             break;
-        case "Archiv jiných úloh":
+        case "Archiv úloh z kategorie jiné":
             $nadpis = "<h2>Archiv výzev do kategorie \"jiné\":<br> </h2>";
             $volba = 3;
             break;
