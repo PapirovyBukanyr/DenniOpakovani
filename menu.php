@@ -4,8 +4,8 @@
  * Ta má možnosti jít zpět, jít na profil a odhlásit se 
  * Na tlačítku přejít na profil se zobrazí jméno a počet celkově vyřešených úloh
  * 
- * @input osobni_cislo osobní číslo uživatele
- * @input jmeno jméno uživatele
+ * @param $osobni_cislo osobní číslo uživatele
+ * @param $jmeno jméno uživatele
  */
 
 $pocetUloh = 0;

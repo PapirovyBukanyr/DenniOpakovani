@@ -2,10 +2,10 @@
 /**
  * stránka, která zpracovává odpověď přijatou z odpoved.php a vyhodnocuje její správnost
  * 
- * @input POST["osobni_cislo"] osobní číslo uživatele
- * @input POST["heslo"] heslo uživatele
- * @input POST['volba'] vybraný obor
- * @input POST['odpoved'] odpověď na otázku
+ * @param $_POST["osobni_cislo"] osobní číslo uživatele
+ * @param $_POST["heslo"] heslo uživatele
+ * @param $_POST['volba'] vybraný obor
+ * @param $_POST['odpoved'] odpověď na otázku
  */
 $jmeno = null;
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))

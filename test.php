@@ -15,22 +15,23 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     $jmeno = ziskejJmeno($osobni_cislo,$heslo);
 }
 if ($jmeno != null and isset($_POST["volba"])){
+    $pocetOtazek = 5;
     $volba = $_POST["volba"];
     switch ($volba) {
-        case "Matematická analýza":
-            $nadpis = "<h2>Denní výzva do matematické analýzy: <br> </h2>";
+        case "Vygenerovat test z otázek kategorie matematická analýza":
+            $nadpis = "<h2>Test z kategorie matematická analýza: <br> </h2>";
             $volba = 0;
             break;
-        case "Lineární algebra":
-            $nadpis ="<h2>Denní výzva do lineární algebry: <br> </h2>";
+        case "Vygenerovat test z otázek kategorie lineární algebra":
+            $nadpis ="<h2>Test z kategorie lineární algebra: <br> </h2>";
             $volba = 1;
             break;
-        case "Konstruování":
-            $nadpis = "<h2>Denní výzva do konstruování:<br>  </h2>";
+        case "Vygenerovat test z otázek kategorie konstruování":
+            $nadpis = "<h2>Test z kategorie:<br>  </h2>";
             $volba = 2;
             break;
-        case "Jiné":
-            $nadpis = "<h2>Denní výzva do kategorie \"jiné\":<br> </h2>";
+        case "Vygenerovat test z otázek kategorie jiné":
+            $nadpis = "<h2>Test z kategorie \"jiné\":<br> </h2>";
             $volba = 3;
             break;
         default:
@@ -38,22 +39,13 @@ if ($jmeno != null and isset($_POST["volba"])){
     }
     include 'menu.php';
     $currentDate = date('Y-m-d');
-    $result = provedPrikaz("SELECT otazka FROM ulohy WHERE datum=? AND obor=?", array($currentDate, $volba));
-    if($row = $result -> fetch_assoc()){
-        $otazka = $row["otazka"];    
+    $result = provedPrikaz("SELECT otazka FROM ulohy WHERE  obor=? AND NOT datum=?", array($volba,$currentDate));
+    $otazka = array();
+    while($row = $result -> fetch_assoc()){
+        array_push($otazka, $row['otazka']);
     }
-    else{
-        $otazka = "Výzva nenalezena. Ozvěte se Markovi, ten vám dá deset důvodů proč...";
-    }
-    $result = provedPrikaz("SELECT cislo_uzivatele FROM uzivatele_reseni WHERE datum=? AND obor=?",array($currentDate,$volba));
-    if ($result->num_rows > 0) {
-        $resitele = array();
-        while($row = $result->fetch_assoc()) {
-            if($row1 = provedPrikaz("SELECT jmeno FROM uzivatele WHERE klic=?", array($row["cislo_uzivatele"])) -> fetch_assoc()){
-                array_push($resitele,$row1["jmeno"]);
-            }
-        }
-      }
+    shuffle($otazka);
+    $vybrane_otazky = array_slice($otazka,0,$pocetOtazek);
 }
 else {
     include 'zpet.php';
@@ -78,43 +70,39 @@ else {
 <body>
     <div class="container mt-5">
         <?php
+
         echo $nadpis ;
-        echo $otazka;
             ?>
             <br><br>
-            <form action="zpracuj_odpoved.php" method="post">
-            <input type="radio" name='osobni_cislo' value='<?php echo $osobni_cislo;?>' checked hidden/> 
-            <input type="radio" name='heslo' value='<?php echo $heslo;?>' checked hidden/> 
-            <input type="radio" name='volba' value='<?php echo $volba;?>' checked hidden/> 
-                
+                <?php
+                $i = 0;
+                foreach($vybrane_otazky as $otazecka){
+                ?>
             <div class="form-group">
-                    <label>Odpověď:</label>
+                    <label><?php echo $otazecka;?></label>
                     <br>
-                    <input type="text" class="form-control" id="odpoved" name="odpoved" rows="1" required/>
+                    <input type="text"  class="form-control" id="odpoved<?php echo $i;?>" name="odpoved" rows="1" required/>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-dark">Odeslat</button>
-            </form>
-        
+                <?php 
+                $i++;
+            }
+                ?>
+                <br>
+                <button class="btn btn-dark" onclick=overitSpravnost()>Vyhodnotit odpovědi</button>
     </div>
     <br>
     <br>
-    <div class="container mt-3">
-        <ul class="list-group">
-            <li class="list-group-item bg-dark text-light">Lidé, co tuto výzvu již splnili</li>
-            <?php
-                if (isset($resitele)) {
-                    foreach($resitele as $resitel){
-                        echo "<li class=\"list-group-item\">".$resitel."</li>"; 
-                    }
-                } else {
-                    echo "<li class=\"list-group-item \">Tuto úlohu zatím nikdo nevyřešil. Buď ten první!</li>";
-                }
-            ?>
-        </ul>
-    </div>
 </body>
 </html>
+<script>
+    function overitSpravnost(){
+        var odpoved =document.getElementById("odpoved0").value;
+        window.alert(odpoved);
+        var odpoved =document.getElementById("odpoved1").value;
+        window.alert(odpoved);
+    }
+</script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     renderMathInElement(document.getElementById("math-element"), {

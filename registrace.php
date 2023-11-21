@@ -69,7 +69,7 @@ array_push($zabrana_cisla, $row['klic']);
             var confirmPassword = document.getElementById("heslo_potvrzeni").value;
             var passwordHelp = document.getElementById("passwordHelp");
             var number = document.getElementById("cislo").value;
-            var nemberhelp =document.getElementById("numberHelp");
+            var numberHelp =document.getElementById("numberHelp");
             
             <?php
             foreach ($zabrana_cisla as $cisla) {
