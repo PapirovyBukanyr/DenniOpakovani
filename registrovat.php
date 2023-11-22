@@ -2,9 +2,9 @@
 /**
  * Stránka na zpracovávání nové registrace
  * 
- * @input cislo osobní číslo uživatele
- * @input heslo heslo uživatele
- * @input jmeno jméno uživatele
+ * @param $_POST["osobní"] číslo uživatele
+ * @param $_POST["heslo"]  heslo uživatele
+ * @param $_POST["jmeno"] jméno uživatele
  */
 include 'pripojeni.php';
 $cislo = $_POST["cislo"];

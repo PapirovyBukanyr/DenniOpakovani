@@ -2,8 +2,8 @@
 /**
  * Rozcestí, kde si člověk vybírá, jaký obor (volbu, proboha, to budu muset sjednotit nebo ti z toho hrábne) denní výzvy chce
  * 
- * @input POST["osobni_cislo"] osobní číslo uživatele
- * @input POST["heslo"] heslo uživatele
+ * @param $_POST["osobni_cislo"] osobní číslo uživatele
+ * @param $_POST["heslo"] heslo uživatele
  */
     $jmeno = null;
     if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))

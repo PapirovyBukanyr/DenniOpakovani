@@ -69,7 +69,7 @@ while ($row = $result->fetch_assoc()) {
             var confirmPassword = document.getElementById("heslo_potvrzeni").value;
             var passwordHelp = document.getElementById("passwordHelp");
             var number = document.getElementById("cislo").value;
-            var nemberhelp =document.getElementById("numberHelp");
+            var numberHelp =document.getElementById("numberHelp");
             
             numberHelp.textContent = "";
             <?php

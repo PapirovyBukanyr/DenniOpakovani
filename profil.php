@@ -4,8 +4,8 @@
  * To se následně vypíše
  * Graf se vytváří javascriptem
  * 
- * @input POST["osobni_cislo"] osobní číslo uživatele
- * @input POST["heslo"] heslo uživatele
+ * @param $_POST["osobni_cislo"] osobní číslo uživatele
+ * @param $_POST["heslo"] heslo uživatele
  */
 
 $jmeno = null;
