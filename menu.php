@@ -9,9 +9,9 @@
  */
 
 $pocetUloh = 0;
-$nahrani = provedPrikaz("SELECT * FROM uzivatele_reseni WHERE cislo_uzivatele=?", array($osobni_cislo));
-while($row = $nahrani->fetch_assoc()){
-    $pocetUloh++;    
+$nahrani = provedPrikaz("SELECT COUNT(cislo_uzivatele) AS pocet FROM uzivatele_reseni WHERE cislo_uzivatele=?", array($osobni_cislo));
+if($row = $nahrani->fetch_assoc()){
+    $pocetUloh = $row['pocet'];    
 }
 ?>
 
@@ -32,9 +32,7 @@ while($row = $nahrani->fetch_assoc()){
                <form action="profil.php" method="Post">
             <input type="radio" name='osobni_cislo' value='<?php echo $osobni_cislo;?>' checked hidden/> 
             <input type="radio" name='heslo' value='<?php echo $heslo;?>' checked hidden/> 
-               <a href="profil.php">
-                    <button class="btn btn-light" href="profil.php"><?php echo $jmeno; ?> <span class="badge bg-dark"><?php echo $pocetUloh;?></span></button>
-                </a> 
+                    <button class="btn btn-light"><?php echo $jmeno; ?> <span class="badge bg-dark"><?php echo $pocetUloh;?></span></button>
                 </form>
                 &nbsp;
                <a href="index.php">

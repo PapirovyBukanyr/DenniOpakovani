@@ -18,7 +18,7 @@ if((provedPrikaz("INSERT INTO uzivatele (klic, jmeno, heslo) VALUES (?,?,?)", ar
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <title>Odpověď</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -29,9 +29,8 @@ if((provedPrikaz("INSERT INTO uzivatele (klic, jmeno, heslo) VALUES (?,?,?)", ar
         <div class="container">
             <div class="d-flex">
                 <a href="index.php">
-                        <button class="btn btn-light" href="index.php">Odhlásit</button>
-                    </a>
-                </div>
+                    <button class="btn btn-light" href="index.php">Odhlásit</button>
+                </a>
             </div>
         </div>
     </nav>
