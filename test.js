@@ -1,8 +1,13 @@
 document.getElementById("generateTest").addEventListener("click", function() {
         var testContainer = document.getElementById("test-container");
         testContainer.textContent = "";
+        var repeate = [];
         for (var i = 0; i < 5; i++) {
-            var randomIndex = Math.floor(Math.random() * questions.length);
+            var randomIndex;
+            do {
+            randomIndex= Math.floor(Math.random() * questions.length);
+            }while (repeate.includes(randomIndex))
+            repeate.push(randomIndex);
             var question = questions[randomIndex];
 
             var questionDiv = document.createElement("div");
