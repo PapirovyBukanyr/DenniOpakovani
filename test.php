@@ -78,6 +78,7 @@ else {
     <?php 
     echo $nadpis;
     ?>
+    <h4>Zatím se jedná spíše o testovací verzi, proto prosím omluvte nedostatky. Za ohlášení chyb budu velmi vděčný.</h4>
     
     <div id="test-container">
     </div>
