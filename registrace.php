@@ -9,13 +9,13 @@ if(!($result = provedPrikaz("SELECT klic FROM uzivatele"))){
     die;
 }
 while ($row = $result->fetch_assoc()) {
-array_push($zabrana_cisla, $row['klic']);
+    array_push($zabrana_cisla, $row['klic']);
 }
 ?>
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrace účastníka</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -71,6 +71,7 @@ array_push($zabrana_cisla, $row['klic']);
             var number = document.getElementById("cislo").value;
             var nemberhelp =document.getElementById("numberHelp");
             
+            numberHelp.textContent = "";
             <?php
             foreach ($zabrana_cisla as $cisla) {
                 ?>
@@ -83,12 +84,12 @@ array_push($zabrana_cisla, $row['klic']);
             ?>
 
             if (password !== confirmPassword) {
-                passwordHelp.textContent = "Hesla se neshodují!";
+                passwordHelp.textContent = "Hesla se neshodují! Ty jsi ale šikula ♥"; //Ondro, nezlob se na mě, byl jsem donucen...
                 return false;
             } else {
                 passwordHelp.textContent = "";
                 return true;
-            }
+            } 
         }
     </script>
 </body>

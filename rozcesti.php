@@ -17,7 +17,7 @@
         include 'menu.php';
         $currentDate = date('Y-m-d');
         $result = provedPrikaz("SELECT obor FROM uzivatele_reseni WHERE datum=? AND cislo_uzivatele=?",array($currentDate, $osobni_cislo));
-        $mojePole = array(false, false, false, false);
+        $mojePole = array(false, false, false, false);//pole naplnit cyklem
         while($row = $result -> fetch_assoc()){
             $mojePole[$row["obor"]] = true;
         }

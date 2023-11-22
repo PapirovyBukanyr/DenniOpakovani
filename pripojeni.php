@@ -41,30 +41,29 @@ function provedPrikaz(string $prikaz,array $hodnoty = null) {
     $stmt = $conn->prepare($prikaz);
     if (isset($hodnoty)) {
     //přemýšlím, jak by to šlo hodit do cyklu
-    switch (sizeof($hodnoty)){
-        case 1:
-            $stmt->bind_param("s", $hodnoty[0]);
-            break;
-        case 2:
-            $stmt->bind_param("ss", $hodnoty[0],$hodnoty[1]);
-            break;
-        case 3:
-            $stmt->bind_param("sss", $hodnoty[0], $hodnoty[1], $hodnoty[2]);
-            break;
-        case 4:
-            $stmt->bind_param("ssss", $hodnoty[0], $hodnoty[1], $hodnoty[2],$hodnoty[3]);
-            break;
-        case 5:
-            $stmt->bind_param("sssss", $hodnoty[0], $hodnoty[1], $hodnoty[2],$hodnoty[3],$hodnoty[4]);
-            break;
-        default:
-            break;
-    }
+        switch (sizeof($hodnoty)){
+            case 1:
+                $stmt->bind_param("s", $hodnoty[0]);
+                break;
+            case 2:
+                $stmt->bind_param("ss", $hodnoty[0],$hodnoty[1]);
+                break;
+            case 3:
+                $stmt->bind_param("sss", $hodnoty[0], $hodnoty[1], $hodnoty[2]);
+                break;
+            case 4:
+                $stmt->bind_param("ssss", $hodnoty[0], $hodnoty[1], $hodnoty[2],$hodnoty[3]);
+                break;
+            case 5:
+                $stmt->bind_param("sssss", $hodnoty[0], $hodnoty[1], $hodnoty[2],$hodnoty[3],$hodnoty[4]);
+                break;
+            default:
+                break;
+        }
     }
     $stmt->execute();
     $vystup = $stmt->get_result();
     $conn ->close();
     return $vystup;    
 }
-
 ?>
