@@ -11,7 +11,7 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
 {
     $osobni_cislo = $_POST["osobni_cislo"];
     $heslo = $_POST["heslo"];
-    include 'pripojeni.php';
+    include "pripojeni.php";
     $jmeno = ziskejJmeno($osobni_cislo,$heslo);
 }
 if ($jmeno != null and isset($_POST["volba"])){
@@ -37,15 +37,15 @@ if ($jmeno != null and isset($_POST["volba"])){
         default:
             $nadpis = "<p>Neplatná volba.</p>";
     }
-    include 'menu.php';
+    include "menu.php";
     $currentDate = date('Y-m-d');
-    $result = provedPrikaz("SELECT otazka FROM ulohy WHERE  obor=? AND NOT datum=?", array($volba,$currentDate));
+    $result = provedPrikaz("SELECT otazka, odpoved FROM ulohy WHERE  obor=? AND NOT datum=?", array($volba,$currentDate));
     $otazka = array();
+    $odpoved = array();
     while($row = $result -> fetch_assoc()){
         array_push($otazka, $row['otazka']);
+        array_push($odpoved, $row['odpoved']);
     }
-    shuffle($otazka);
-    $vybrane_otazky = array_slice($otazka,0,$pocetOtazek);
 }
 else {
     include 'zpet.php';
@@ -66,56 +66,40 @@ else {
    <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+<style>
+        .question-container {
+            margin-bottom: 40px;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
-        <?php
-
-        echo $nadpis ;
-            ?>
-            <br><br>
-                <?php
-                $i = 0;
-                foreach($vybrane_otazky as $otazecka){
-                ?>
-            <div class="form-group">
-                    <label><?php echo $otazecka;?></label>
-                    <br>
-                    <input type="text"  class="form-control" id="odpoved<?php echo $i;?>" name="odpoved" rows="1" required/>
-                </div>
-                <br>
-                <?php 
-                $i++;
-            }
-                ?>
-                <br>
-                <button class="btn btn-dark" onclick=overitSpravnost()>Vyhodnotit odpovědi</button>
+    <div class="container">
+    <?php 
+    echo $nadpis;
+    ?>
+    
+    <div id="test-container">
     </div>
+    
+    <button class="btn btn-primary" id="generateTest">Generovat Test</button>
+    <button class="btn btn-success" id="checkAnswers">Ověřit Odpovědi</button>
+
+</div>
+
+</div>
     <br>
     <br>
-</body>
-</html>
-<script>
-    function overitSpravnost(){
-        var odpoved =document.getElementById("odpoved0").value;
-        window.alert(odpoved);
-        var odpoved =document.getElementById("odpoved1").value;
-        window.alert(odpoved);
-    }
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    renderMathInElement(document.getElementById("math-element"), {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "\\[", right: "\\]", display: true },
-        { left: "\\(", right: "\\)", display: false },
-      ],
-    });
-  });
-</script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      renderMathInElement(document.body);
-    });
-  </script>
+    var questions = [
+        <?php 
+  for ($i = 0; $i < count($otazka); $i++) {
+   echo '{ question: ' . json_encode($otazka[$i]) . ', answer:' . json_encode($odpoved[$i]) . '},';
+  } ?>
+
+   ];
+   </script>
+  <script src="test.js"></script>
+  </body>
+
+</html>
