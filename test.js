@@ -44,29 +44,13 @@ document.getElementById("generateTest").addEventListener("click", function() {
 
         alert("Správně zodpovězeno " + correctAnswers + " otázek z 5.");
     });
+    
+    //Následující program byl vytvořen ChatGPT, netuším jak funguje nebo co dělá, ale výsledky má správné, takže se neptám...
     function convertToKaTeX(text) {
-        // Regular expression pro nalezení výrazů mezi \( \)
         var regex = /\\\((.*?)\\\)/g;
-      
-        // Nahradíme výrazy KaTeX kódem
         var convertedText = text.replace(regex, function(match, p1) {
           return katex.renderToString(p1);
         });
       
         return convertedText;
       };
-    /*
-    function renderLatexInTexts(inputString) {
-        const startSymbol = '\\(';
-        const endSymbol = '\\)';   
-        const regex = new RegExp(`${startSymbol}[^${endSymbol}]*${endSymbol}`, 'g');
-        return inputString.replace(regex, function(latexExpression) {
-            try{
-                let returningExpress = latexExpression.slice(1,latexExpression.length-2);
-                return katex.renderToString(returningExpress);
-            }
-            catch(error){
-                return error;
-            }
-         });
-    }*/
