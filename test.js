@@ -12,7 +12,7 @@ document.getElementById("generateTest").addEventListener("click", function() {
 
             var questionDiv = document.createElement("div");
             questionDiv.classList.add("question-container");
-            questionDiv.innerHTML = "<strong>Otázka " + (i + 1) + ":</strong><br> " + renderLatexInTexts(question.question);
+            questionDiv.innerHTML = "<strong>Otázka " + (i + 1) + ":</strong><br> " + convertToKaTeX(question.question);
 
             var inputField = document.createElement("input");
             inputField.type = "text";
@@ -44,6 +44,18 @@ document.getElementById("generateTest").addEventListener("click", function() {
 
         alert("Správně zodpovězeno " + correctAnswers + " otázek z 5.");
     });
+    function convertToKaTeX(text) {
+        // Regular expression pro nalezení výrazů mezi \( \)
+        var regex = /\\\((.*?)\\\)/g;
+      
+        // Nahradíme výrazy KaTeX kódem
+        var convertedText = text.replace(regex, function(match, p1) {
+          return katex.renderToString(p1);
+        });
+      
+        return convertedText;
+      };
+    /*
     function renderLatexInTexts(inputString) {
         const startSymbol = '\\(';
         const endSymbol = '\\)';   
@@ -57,4 +69,4 @@ document.getElementById("generateTest").addEventListener("click", function() {
                 return error;
             }
          });
-    }
+    }*/
