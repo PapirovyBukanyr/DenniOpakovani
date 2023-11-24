@@ -13,20 +13,21 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     $osobni_cislo = $_POST["osobni_cislo"];
     $heslo = $_POST["heslo"];
     include 'pripojeni.php';
-    $jmeno = ziskejJmeno($osobni_cislo,$heslo);
+    $pripojeni = new Pripojeni();
+    $jmeno = $pripojeni->ziskejJmeno($osobni_cislo,$heslo);
 }
 if ($jmeno != null and isset($_POST['odpoved']) and isset($_POST['volba'])){
     $spravnost = false;
     $odpoved = $_POST['odpoved'];
     $volba = $_POST['volba'];
     $currentDate = date('Y-m-d');
-    $result = provedPrikaz("SELECT odpoved FROM ulohy WHERE datum=? AND obor=?",array($currentDate,$volba));
+    $result = $pripojeni->provedPrikaz("SELECT odpoved FROM ulohy WHERE datum=? AND obor=?",array($currentDate,$volba));
     if($row = $result -> fetch_assoc()){
         if (trim(strtolower($odpoved)) == trim(strtolower($row["odpoved"]))){
             $spravnost = true;
             $volba = $_POST["volba"];
-            if(!$pomocna_prommenna = provedPrikaz("SELECT * FROM uzivatele_reseni WHERE obor=? AND datum=? AND cislo_uzivatele=?",array($volba,$currentDate,$osobni_cislo))->fetch_assoc()){
-            provedPrikaz("INSERT INTO uzivatele_reseni (obor, datum, cislo_uzivatele) VALUES (?, ?,?)", array($volba,$currentDate,$osobni_cislo));   
+            if(!$pomocna_prommenna = $pripojeni->provedPrikaz("SELECT * FROM uzivatele_reseni WHERE obor=? AND datum=? AND cislo_uzivatele=?",array($volba,$currentDate,$osobni_cislo))->fetch_assoc()){
+            $pripojeni->provedPrikaz("INSERT INTO uzivatele_reseni (obor, datum, cislo_uzivatele) VALUES (?, ?,?)", array($volba,$currentDate,$osobni_cislo));   
         }
         }   
     }

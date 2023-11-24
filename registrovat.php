@@ -7,9 +7,10 @@
  * @param $_POST["jmeno"] jméno uživatele
  */
 include 'pripojeni.php';
+$pripojeni = new Pripojeni();
 $cislo = $_POST["cislo"];
 $heslo = $_POST["heslo"];
-if((provedPrikaz("INSERT INTO uzivatele (klic, jmeno, heslo) VALUES (?,?,?)", array($cislo,$_POST["jmeno"],$heslo)))){
+if(($pripojeni->provedPrikaz("INSERT INTO uzivatele (klic, jmeno, heslo) VALUES (?,?,?)", array($cislo,$_POST["jmeno"],$heslo)))){
     include 'zpet.php';
     die;
 }

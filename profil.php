@@ -14,12 +14,13 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     $osobni_cislo = $_POST["osobni_cislo"];
     $heslo = $_POST["heslo"];
     include 'pripojeni.php';
-    $jmeno = ziskejJmeno($osobni_cislo,$heslo);
+    $pripojeni = new Pripojeni();
+    $jmeno = $pripojeni->ziskejJmeno($osobni_cislo,$heslo);
 }
 if ($jmeno != null){
     include "menu.php";
     $currentDate = date('Y-m-d');
-    $result =provedPrikaz("SELECT * FROM uzivatele_reseni ORDER BY datum ASC");
+    $result =$pripojeni->provedPrikaz("SELECT * FROM uzivatele_reseni ORDER BY datum ASC");
     
         $pocetUlohZaUzivatelem = array();
         $pocetpocetMychUlohZaDenUlohZaDen = array();

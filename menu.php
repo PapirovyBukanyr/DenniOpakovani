@@ -6,10 +6,11 @@
  * 
  * @param $osobni_cislo osobní číslo uživatele
  * @param $jmeno jméno uživatele
+ * @param $pripojeni objekt umožňující komunikaci se serverem
  */
 
 $pocetUloh = 0;
-$nahrani = provedPrikaz("SELECT COUNT(cislo_uzivatele) AS pocet FROM uzivatele_reseni WHERE cislo_uzivatele=?", array($osobni_cislo));
+$nahrani = $pripojeni->provedPrikaz("SELECT COUNT(cislo_uzivatele) AS pocet FROM uzivatele_reseni WHERE cislo_uzivatele=?", array($osobni_cislo));
 if($row = $nahrani->fetch_assoc()){
     $pocetUloh = $row['pocet'];    
 }

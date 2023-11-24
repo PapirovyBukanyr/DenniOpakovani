@@ -17,16 +17,16 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
         if($osobni_cislo == 12345 and $heslo == 12345){//bezpečnost přede vším, plánuji to změnit, neboj se
             
             include 'pripojeni.php';
-            $conn = pripoj();
+            $pripojeni = new Pripojeni();
             if(isset($_POST["otazka"]) and isset($_POST["odpoved"]) and isset($_POST["datum"]) and isset($_POST["obor"])){
                 $datum =$_POST["datum"];
                 $otazka = $_POST["otazka"];
                 $odpoved = $_POST["odpoved"];
                 $obor = $_POST["obor"];
-                $result = provedPrikaz("SELECT otazka FROM ulohy WHERE datum=? AND obor=?", array($datum, $obor));
+                $result = $pripojeni->provedPrikaz("SELECT otazka FROM ulohy WHERE datum=? AND obor=?", array($datum, $obor));
                 $klic = time();
                 if(!($row = $result -> fetch_assoc())){
-                    provedPrikaz("INSERT INTO ulohy (obor, datum, otazka, odpoved, klic) VALUES (?,?,?,?,?)", array($obor, $datum, $otazka, $odpoved, $klic));
+                    $pripojeni->provedPrikaz("INSERT INTO ulohy (obor, datum, otazka, odpoved, klic) VALUES (?,?,?,?,?)", array($obor, $datum, $otazka, $odpoved, $klic));
                     echo "Otazka pridana";
                 }
                 else{
