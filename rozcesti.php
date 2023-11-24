@@ -11,12 +11,13 @@
         $osobni_cislo = $_POST["osobni_cislo"];
         $heslo = $_POST["heslo"];
         include 'pripojeni.php';
-        $jmeno = ziskejJmeno($osobni_cislo,$heslo);
+        $pripojeni = new Pripojeni();
+        $jmeno = $pripojeni->ziskejJmeno($osobni_cislo,$heslo);
     }
     if ($jmeno != null){
         include 'menu.php';
         $currentDate = date('Y-m-d');
-        $result = provedPrikaz("SELECT obor FROM uzivatele_reseni WHERE datum=? AND cislo_uzivatele=?",array($currentDate, $osobni_cislo));
+        $result = $pripojeni->provedPrikaz("SELECT obor FROM uzivatele_reseni WHERE datum=? AND cislo_uzivatele=?",array($currentDate, $osobni_cislo));
         $mojePole = array(false, false, false, false);//pole naplnit cyklem
         while($row = $result -> fetch_assoc()){
             $mojePole[$row["obor"]] = true;

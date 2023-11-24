@@ -12,7 +12,8 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     $osobni_cislo = $_POST["osobni_cislo"];
     $heslo = $_POST["heslo"];
     include 'pripojeni.php';
-    $jmeno = ziskejJmeno($osobni_cislo,$heslo);
+    $pripojeni = new Pripojeni();
+    $jmeno = $pripojeni->ziskejJmeno($osobni_cislo,$heslo);
 }
 if ($jmeno != null and isset($_POST['volba'])){
     $volba = $_POST['volba'];
@@ -38,7 +39,7 @@ if ($jmeno != null and isset($_POST['volba'])){
     }
     include 'menu.php';
     $currentDate = date('Y-m-d');
-    $result = provedPrikaz("SELECT otazka, odpoved,datum FROM ulohy WHERE obor=?", array($volba));
+    $result = $pripojeni->provedPrikaz("SELECT otazka, odpoved,datum FROM ulohy WHERE obor=?", array($volba));
     $otazky = array();
     while($row = $result -> fetch_assoc()){
       if($row["datum"]<$currentDate){

@@ -3,8 +3,9 @@
  * Stránka pro registraci nového uživatele
  */
 include 'pripojeni.php';
+$pripojeni = new Pripojeni();
 $zabrana_cisla = array();
-if(!($result = provedPrikaz("SELECT klic FROM uzivatele"))){
+if(!($result = $pripojeni->provedPrikaz("SELECT klic FROM uzivatele"))){
     include 'zpet.php';
     die;
 }
