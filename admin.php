@@ -27,7 +27,10 @@
                         <label for="heslo">Heslo:</label>
                         <input type="password" class="form-control" id="heslo" name="heslo" required>
                     </div>
-                    <button type="submit" class="btn btn-dark">Přihlásit</button>
+                    <?php
+                        include "tlacitka.php";
+                        new Tlacitka("Přihlásit");
+                    ?>
                 </form>
             </div>
         </div>

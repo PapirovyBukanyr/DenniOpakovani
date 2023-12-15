@@ -7,11 +7,13 @@
  * @param $_POST["volba"] obor, který si uživatel zvolil
  */
 $jmeno = null;
+include 'pripojeni.php';
+include 'tlacitka.php';
+
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
 {
     $osobni_cislo = $_POST["osobni_cislo"];
     $heslo = $_POST["heslo"];
-    include 'pripojeni.php';
     $pripojeni = new Pripojeni();
     $jmeno = $pripojeni->ziskejJmeno($osobni_cislo,$heslo);
 }

@@ -37,7 +37,9 @@ if($row = $nahrani->fetch_assoc()){
                 </form>
                 &nbsp;
                <a href="index.php">
-                    <button class="btn btn-light" href="index.php">Odhlásit</button>
+                    <?php 
+                        new Tlacitka("Odhlásit");
+                    ?>
                 </a>
             </div>
         </div>

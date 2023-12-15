@@ -6,11 +6,13 @@
  * @param $_POST["heslo"] heslo uživatele
  */
     $jmeno = null;
+    include 'pripojeni.php';
+    include 'tlacitka.php';
+
     if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     {
         $osobni_cislo = $_POST["osobni_cislo"];
         $heslo = $_POST["heslo"];
-        include 'pripojeni.php';
         $pripojeni = new Pripojeni();
         $jmeno = $pripojeni->ziskejJmeno($osobni_cislo,$heslo);
     }
@@ -18,7 +20,10 @@
         include 'menu.php';
         $currentDate = date('Y-m-d');
         $result = $pripojeni->provedPrikaz("SELECT obor FROM uzivatele_reseni WHERE datum=? AND cislo_uzivatele=?",array($currentDate, $osobni_cislo));
-        $mojePole = array(false, false, false, false);//pole naplnit cyklem
+        $mojePole = array();
+        for ($i = 0; $i < 4; $i++){
+            array_push($mojePole,false);
+        }
         while($row = $result -> fetch_assoc()){
             $mojePole[$row["obor"]] = true;
         }
