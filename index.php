@@ -2,6 +2,8 @@
 /**
  * Tato stránka neobsahuje žádnou logiku, pouze je to zobrazení přihlašovacího vstupu
  */
+
+ include "tlacitka.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,14 +34,16 @@
                         <label style="opacity:0.6"for="heslo">Pokud bylo heslo zapomenuto, neváhej napsat Markovi, již brzy to bude autonomní</label>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-dark">Přihlásit</button>
+                    <?php
+                        new Tlacitka(text: "Přihlásit");
+                    ?>
                 </form>
                 <br>
                 <br>
                 Nemáte ještě účet? registrovat se můžete 
-                <a href="registrace.php">
-                    <button class="btn btn-dark">zde</button>
-                </a>
+                <?php
+                    new Tlacitka(text: "Zde", odkaz: "registrace.php");
+                ?>
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
 {
     $osobni_cislo = $_POST["osobni_cislo"];
     $heslo = $_POST["heslo"];
-    include 'pripojeni.php';
+    require 'pripojeni.php';
     $pripojeni = new Pripojeni();
     $jmeno = $pripojeni->ziskejJmeno($osobni_cislo,$heslo);
 }
@@ -22,22 +22,22 @@ if ($jmeno != null and isset($_POST["volba"])){
             $nadpis = "<h2>Denní výzva do matematické analýzy: <br> </h2>";
             $volba = 0;
             break;
-        case "Lineární algebra":
-            $nadpis ="<h2>Denní výzva do lineární algebry: <br> </h2>";
-            $volba = 1;
+        case "Obecná algebra":
+            $nadpis ="<h2>Denní výzva do obecné algebry: <br> </h2>";
+            $volba = 4;
             break;
-        case "Konstruování":
-            $nadpis = "<h2>Denní výzva do konstruování:<br>  </h2>";
-            $volba = 2;
+        case "Fyzika":
+            $nadpis = "<h2>Denní výzva do fyziky:<br>  </h2>";
+            $volba = 5;
             break;
-        case "Jiné":
-            $nadpis = "<h2>Denní výzva do kategorie \"jiné\":<br> </h2>";
-            $volba = 3;
+        case "BUM":
+            $nadpis = "<h2>Denní výzva do BUM:<br> </h2>";
+            $volba = 6;
             break;
         default:
             $nadpis = "<p>Neplatná volba.</p>";
     }
-    include 'menu.php';
+    require 'menu.php';
     $currentDate = date('Y-m-d');
     $result = $pripojeni->provedPrikaz("SELECT otazka FROM ulohy WHERE datum=? AND obor=?", array($currentDate, $volba));
     if($row = $result -> fetch_assoc()){
@@ -57,7 +57,7 @@ if ($jmeno != null and isset($_POST["volba"])){
       }
 }
 else {
-    include 'zpet.php';
+    require 'zpet.php';
     die;
 }
 ?>
@@ -94,7 +94,9 @@ else {
                     <input type="text" class="form-control" id="odpoved" name="odpoved" rows="1" required/>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-dark">Odeslat</button>
+                <?php
+                    new Tlacitka(text: "Odeslat");
+                ?>
             </form>
         
     </div>

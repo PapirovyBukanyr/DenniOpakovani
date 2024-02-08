@@ -14,6 +14,9 @@
 <body>
 <div class="container mt-5">
                 Moc se omlouvám, někde došlo k chybě. Prosím, přihlašte se znovu <br><br>
-                <a href="index.php"><button class="btn btn-dark">Zpět</button></a>
+                <?php
+                require 'tlacitka.php';
+                    new Tlacitka(text:"Zpět", odkaz: "index.php")
+                ?>
             </div>
 </body>

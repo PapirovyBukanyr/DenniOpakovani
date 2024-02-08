@@ -1,4 +1,5 @@
 <?php
+include "tlacitka.php";
 /**
  * přihlášení se k přidávání otázek
  */
@@ -27,7 +28,9 @@
                         <label for="heslo">Heslo:</label>
                         <input type="password" class="form-control" id="heslo" name="heslo" required>
                     </div>
-                    <button type="submit" class="btn btn-dark">Přihlásit</button>
+                    <?php
+                        new Tlacitka("Přihlásit");
+                    ?>
                 </form>
             </div>
         </div>

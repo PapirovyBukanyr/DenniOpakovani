@@ -8,7 +8,7 @@
  * @param $jmeno jméno uživatele
  * @param $pripojeni objekt umožňující komunikaci se serverem
  */
-
+require 'tlacitka.php';
 $pocetUloh = 0;
 $nahrani = $pripojeni->provedPrikaz("SELECT COUNT(cislo_uzivatele) AS pocet FROM uzivatele_reseni WHERE cislo_uzivatele=?", array($osobni_cislo));
 if($row = $nahrani->fetch_assoc()){
@@ -36,9 +36,9 @@ if($row = $nahrani->fetch_assoc()){
                     <button class="btn btn-light"><?php echo $jmeno; ?> <span class="badge bg-dark"><?php echo $pocetUloh;?></span></button>
                 </form>
                 &nbsp;
-               <a href="index.php">
-                    <button class="btn btn-light" href="index.php">Odhlásit</button>
-                </a>
+                <?php 
+                    new Tlacitka(text: "Odhlásit", odkaz: "index.php");
+                ?>
             </div>
         </div>
     </nav>

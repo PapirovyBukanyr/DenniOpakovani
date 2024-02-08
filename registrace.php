@@ -27,7 +27,10 @@ while ($row = $result->fetch_assoc()) {
 <body class="bg-light row justify-content-center">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
         <div class="container">
-            <button class="btn btn-light mr-auto" onclick="window.history.back()">Zpět</button>
+            <?php
+                include 'tlacitka.php';
+                new Tlacitka(text: "Zpět", action: "window.history.back()", tridyTlacitek:BarvyTlacitek::light)
+            ?>
         </div>
     </nav>
 
@@ -59,7 +62,10 @@ while ($row = $result->fetch_assoc()) {
                         <small id="passwordHelp" class="form-text text-danger"></small>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-dark">Registrovat</button>
+                    
+                <?php
+                    new Tlacitka(text: "Registrovat");
+                ?>
                 </form>
             </div>
         </div>
