@@ -7,7 +7,6 @@
  */
     $jmeno = null;
     include 'pripojeni.php';
-    include 'tlacitka.php';
 
     if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
     {
@@ -64,9 +63,9 @@
                 <?php
                     include 'moznost_rozcesti.php';
                     pridatMoznostRozcesti($mojePole[0],"Matematická analýza");
-                    pridatMoznostRozcesti($mojePole[1],"Lineární algebra");
-                    pridatMoznostRozcesti($mojePole[2],"Konstruování");
-                    pridatMoznostRozcesti($mojePole[3],"Jiné");
+                    pridatMoznostRozcesti($mojePole[4],"Obecná algebra");
+                    pridatMoznostRozcesti($mojePole[5],"Fyzika");
+                    pridatMoznostRozcesti($mojePole[6],"BUM");
                 ?>
             </div>
         </form>

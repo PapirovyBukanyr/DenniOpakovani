@@ -35,17 +35,15 @@
                     </div>
                     <br>
                     <?php
-                    new Tlacitka("Přihlásit");
+                        new Tlacitka(text: "Přihlásit");
                     ?>
                 </form>
                 <br>
                 <br>
                 Nemáte ještě účet? registrovat se můžete 
-                <a href="registrace.php">
-                    <?php
-                    new Tlacitka("Zde");
-                    ?>
-                </a>
+                <?php
+                    new Tlacitka(text: "Zde", odkaz: "registrace.php");
+                ?>
             </div>
         </div>
     </div>

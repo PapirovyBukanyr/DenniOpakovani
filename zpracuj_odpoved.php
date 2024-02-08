@@ -36,14 +36,14 @@ if ($jmeno != null and isset($_POST['odpoved']) and isset($_POST['volba'])){
         case 0:
             $volba = "Matematická analýza";
             break;
-        case 1:
-            $volba = "Lineární algebra";
+        case 4:
+            $volba = "Obecná algebra";
             break;
-        case 2:
-            $volba = "Konstruování";
+        case 5:
+            $volba = "Fyzika";
             break;
-        case 3:
-            $volba = "Jiné";
+        case 6:
+            $volba = "BUM";
             break;
     }
 }
@@ -80,7 +80,14 @@ else {
                 }
             ?>
                         <div class="col-md-3">
-                            <input type="submit" class="btn <?php if($spravnost)echo "btn-success"; else echo "btn-danger";?>" value="Zpět na rozcestí"></input>
+                            <?php
+                            if($spravnost){
+                                new Tlacitka (text:"Zpět na rozcestí", tridyTlacitek:BarvyTlacitek::success);
+                            }
+                            else{
+                                new Tlacitka (text:"Zpět na rozcestí", tridyTlacitek:BarvyTlacitek::danger);
+                            }
+                            ?>
                         </div>
         </form>
     </div>

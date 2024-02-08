@@ -70,12 +70,14 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
                     <input type="date" class="form-control" id="datum" name="datum" required/>
                     <label>obor</label><br>
                     <input type="radio" name="obor" value="0" required> Matematická analýza<br>
-                    <input type="radio" name="obor" value="1" required> Lineární algebra<br>
-                    <input type="radio" name="obor" value="2" required> Konstruování<br>
-                    <input type="radio" name="obor" value="3" required> Jiné<br>                   
+                    <input type="radio" name="obor" value="4" required> Obecná algebra<br>
+                    <input type="radio" name="obor" value="5" required> Fyzika<br>
+                    <input type="radio" name="obor" value="6" required> BUM<br>                   
                 </div>
                 <br>
-                <button type="submit" class="btn btn-dark">Odeslat</button>
+                <?php
+                    new Tlacitka(text: "Odeslat");
+                ?>
             </form> 
         </div>
             </body>

@@ -25,15 +25,15 @@ if ($jmeno != null and isset($_POST["volba"])){
             break;
         case "Vygenerovat test z otázek kategorie lineární algebra":
             $nadpis ="<h2>Test z kategorie lineární algebra: <br> </h2>";
-            $volba = 1;
+            $volba = 4;
             break;
         case "Vygenerovat test z otázek kategorie konstruování":
             $nadpis = "<h2>Test z kategorie:<br>  </h2>";
-            $volba = 2;
+            $volba = 5;
             break;
         case "Vygenerovat test z otázek kategorie jiné":
             $nadpis = "<h2>Test z kategorie \"jiné\":<br> </h2>";
-            $volba = 3;
+            $volba = 6;
             break;
         default:
             $nadpis = "<p>Neplatná volba.</p>";
@@ -83,10 +83,10 @@ else {
     
     <div id="test-container">
     </div>
-    
-    <button class="btn btn-primary" id="generateTest">Generovat Test</button>
-    <button class="btn btn-success" id="checkAnswers">Ověřit Odpovědi</button>
-
+    <?php
+        new Tlacitka(text: "Generovat Test", id: "generateTest");
+        new Tlacitka(text: "Ověřit Odpovědi", id: "checkAnswers");
+    ?>
 </div>
 
 </div>

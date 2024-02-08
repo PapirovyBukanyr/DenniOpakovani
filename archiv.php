@@ -8,7 +8,6 @@
  */
 $jmeno = null;
 include 'pripojeni.php';
-include 'tlacitka.php';
 
 if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
 {
