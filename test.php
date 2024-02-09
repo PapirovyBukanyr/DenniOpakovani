@@ -84,8 +84,9 @@ else {
     <div id="test-container">
     </div>
     <?php
-        new Tlacitka(text: "Generovat Test", id: "generateTest");
-        new Tlacitka(text: "Ověřit Odpovědi", id: "checkAnswers");
+    $tlacitka = new Tlacitka();
+        $tlacitka->Tlacitko("Generovat Test","dark",null,null,"generateTest");
+        $tlacitka->Tlacitko("Ověřit Odpovědi","dark",null,null,"checkAnswers");
     ?>
 </div>
 

@@ -32,7 +32,8 @@ if(($pripojeni->provedPrikaz("INSERT INTO uzivatele (klic, jmeno, heslo) VALUES 
             <div class="d-flex">
                 
             <?php
-                    new Tlacitka(text: "Odhlásit", tridyTlacitek:BarvyTlacitek::light, odkaz: "index.php");
+                $tlacitka = new Tlacitka();
+                    $tlacitka->Tlacitko( "Odhlásit", "light", "index.php");
                 ?>
             </div>
         </div>
@@ -44,7 +45,7 @@ if(($pripojeni->provedPrikaz("INSERT INTO uzivatele (klic, jmeno, heslo) VALUES 
                         <H2>Registrace proběhla úspěšně</H2>
                         <div class="col-md-3">
                             <?php
-                                new Tlacitka(text:"Vstoupit do aplikace", tridyTlacitek:BarvyTlacitek::success)
+                                $tlacitka->Tlacitko("Vstoupit do aplikace", "success")
                             ?>
                         </div>
         </form>

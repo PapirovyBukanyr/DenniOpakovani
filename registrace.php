@@ -29,7 +29,9 @@ while ($row = $result->fetch_assoc()) {
         <div class="container">
             <?php
                 include 'tlacitka.php';
-                new Tlacitka(text: "Zpět", action: "window.history.back()", tridyTlacitek:BarvyTlacitek::light)
+                
+                $tlacitka = new Tlacitka();
+                $tlacitka->Tlacitko("Zpět","light",null, "window.history.back()")
             ?>
         </div>
     </nav>
@@ -64,7 +66,7 @@ while ($row = $result->fetch_assoc()) {
                     <br>
                     
                 <?php
-                    new Tlacitka(text: "Registrovat");
+                    $tlacitka->Tlacitko("Registrovat");
                 ?>
                 </form>
             </div>

@@ -37,7 +37,8 @@ if($row = $nahrani->fetch_assoc()){
                 </form>
                 &nbsp;
                 <?php 
-                    new Tlacitka(text: "Odhlásit", odkaz: "index.php");
+                    $tlacitka = new Tlacitka();
+                    $tlacitka->Tlacitko( "Odhlásit","dark" , "index.php");
                 ?>
             </div>
         </div>

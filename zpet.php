@@ -16,7 +16,8 @@
                 Moc se omlouvám, někde došlo k chybě. Prosím, přihlašte se znovu <br><br>
                 <?php
                 require 'tlacitka.php';
-                    new Tlacitka(text:"Zpět", odkaz: "index.php")
+                $tlacitka = new Tlacitka();
+                $tlacitka->Tlacitko("Zpět","dark", "index.php")
                 ?>
             </div>
 </body>

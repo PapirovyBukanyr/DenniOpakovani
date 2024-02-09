@@ -20,7 +20,7 @@
         $currentDate = date('Y-m-d');
         $result = $pripojeni->provedPrikaz("SELECT obor FROM uzivatele_reseni WHERE datum=? AND cislo_uzivatele=?",array($currentDate, $osobni_cislo));
         $mojePole = array();
-        for ($i = 0; $i < 4; $i++){
+        for ($i = 0; $i < 8; $i++){
             array_push($mojePole,false);
         }
         while($row = $result -> fetch_assoc()){

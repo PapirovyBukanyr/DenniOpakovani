@@ -4,6 +4,7 @@
  */
 
  include "tlacitka.php";
+ $tlacitka = new Tlacitka();
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,14 +36,14 @@
                     </div>
                     <br>
                     <?php
-                        new Tlacitka(text: "Přihlásit");
+                        $tlacitka->Tlacitko("Přihlásit");
                     ?>
                 </form>
                 <br>
                 <br>
                 Nemáte ještě účet? registrovat se můžete 
                 <?php
-                    new Tlacitka(text: "Zde", odkaz: "registrace.php");
+                    $tlacitka->Tlacitko("Zde", "dark", "registrace.php");
                 ?>
             </div>
         </div>

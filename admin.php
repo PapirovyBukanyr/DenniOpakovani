@@ -29,7 +29,8 @@ include "tlacitka.php";
                         <input type="password" class="form-control" id="heslo" name="heslo" required>
                     </div>
                     <?php
-                        new Tlacitka("Přihlásit");
+                    $tlacitka = new Tlacitka();
+                        $tlacitka->Tlacitko("Přihlásit");
                     ?>
                 </form>
             </div>
