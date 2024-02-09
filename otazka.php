@@ -95,7 +95,8 @@ else {
                 </div>
                 <br>
                 <?php
-                    new Tlacitka(text: "Odeslat");
+                    $tlacitka = new Tlacitka();
+                    $tlacitka->Tlacitko("Odeslat");
                 ?>
             </form>
         

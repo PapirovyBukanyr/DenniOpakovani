@@ -82,10 +82,10 @@ else {
                         <div class="col-md-3">
                             <?php
                             if($spravnost){
-                                new Tlacitka (text:"Zpět na rozcestí", tridyTlacitek:BarvyTlacitek::success);
+                                $tlacitka->Tlacitko ("Zpět na rozcestí", "success");
                             }
                             else{
-                                new Tlacitka (text:"Zpět na rozcestí", tridyTlacitek:BarvyTlacitek::danger);
+                                $tlacitka->Tlacitko ("Zpět na rozcestí", "danger");
                             }
                             ?>
                         </div>

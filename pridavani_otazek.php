@@ -76,7 +76,8 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
                 </div>
                 <br>
                 <?php
-                    new Tlacitka(text: "Odeslat");
+                    $tlacitka = new Tlacitka();
+                    $tlacitka->Tlacitko("Odeslat");
                 ?>
             </form> 
         </div>
