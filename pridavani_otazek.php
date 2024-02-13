@@ -73,12 +73,15 @@ if(isset($_POST["osobni_cislo"]) and isset($_POST["heslo"]))
                     <input type="radio" name="obor" value="4" required> Obecná algebra<br>
                     <input type="radio" name="obor" value="5" required> Fyzika<br>
                     <input type="radio" name="obor" value="6" required> BUM<br>                   
-                </div>
+                
                 <br>
                 <?php
+                require 'tlacitka.php';
                     $tlacitka = new Tlacitka();
                     $tlacitka->Tlacitko("Odeslat");
+                    
                 ?>
+                </div>
             </form> 
         </div>
             </body>
